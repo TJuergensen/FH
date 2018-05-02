@@ -1,0 +1,12 @@
+package stack;
+
+public class StackError extends RuntimeException
+{
+	String message;
+
+	StackError(String m)
+	{
+		message = m;
+	}
+
+}

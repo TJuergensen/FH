@@ -1,0 +1,28 @@
+package linkedList;
+
+public class Element<E> {
+	private E content;
+	private Element next;
+	
+	Element(E e, Element n)
+	{
+		content = e;
+		next = n;
+	}
+	
+	public E getContent()
+	{
+		return content;
+	}
+	
+	public void setContent(E e)
+	{
+		content = e;
+	}
+	
+	public void deleteElement()
+	{
+		content = null;
+	}
+
+}

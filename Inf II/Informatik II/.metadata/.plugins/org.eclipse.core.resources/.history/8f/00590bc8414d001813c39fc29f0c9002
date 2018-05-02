@@ -1,0 +1,16 @@
+package linkedList;
+
+public class LinkedList {
+	
+	private Element next;
+	private Element first;
+	private Element last;
+	
+	LinkedList()
+	{
+		first = null;
+		next = null;
+		last = null;
+	}
+
+}

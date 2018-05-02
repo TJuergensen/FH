@@ -1,0 +1,24 @@
+package stack;
+
+class Cell<E> {
+	E content;
+	Cell<E> next;
+
+	Cell(E e)
+	{
+		content = e;
+	}
+}
+
+class StackError extends RuntimeException {
+	String message;
+
+	StackError(String m)
+	{
+		message = m;
+	}
+}
+
+public class ListStack {
+
+}

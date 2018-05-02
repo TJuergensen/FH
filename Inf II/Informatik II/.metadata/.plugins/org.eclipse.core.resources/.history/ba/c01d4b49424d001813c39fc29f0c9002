@@ -1,0 +1,34 @@
+package linkedList;
+
+public class LinkedList<E> {
+	
+	private Element last;
+	private Element first;
+	private int n;
+	
+	LinkedList()
+	{
+		first = null;
+		last = null;
+		n = 0;
+	}
+	
+	public void add(E item)
+	{
+		if(item == null)
+		{
+			throw new NullPointerException("The item you wanted to add is null");
+		}
+		if(!isEmpty())
+		{
+			Element prev = last;
+			last = new Element(item, null);
+		}
+	}
+
+	private boolean isEmpty()
+	{
+		return n == 0;
+	}
+
+}

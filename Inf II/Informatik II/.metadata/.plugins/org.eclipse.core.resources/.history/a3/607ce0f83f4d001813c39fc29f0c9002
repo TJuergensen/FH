@@ -1,0 +1,21 @@
+package linkedList;
+
+public class Element<E> {
+	private E content;
+	
+	Element(E e)
+	{
+		content = e;
+	}
+	
+	public E getContent()
+	{
+		return content;
+	}
+	
+	public void setContent(E e)
+	{
+		content = e;
+	}
+
+}

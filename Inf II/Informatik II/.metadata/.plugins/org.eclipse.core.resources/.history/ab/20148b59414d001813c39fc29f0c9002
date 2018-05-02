@@ -1,0 +1,12 @@
+package linkedList;
+
+public class LinkedList {
+	
+	private Element next;
+	
+	LinkedList()
+	{
+		
+	}
+
+}

@@ -1,0 +1,58 @@
+package stack;
+
+class Cell<E> {
+	E content;
+	Cell<E> next;
+
+	Cell(E e)
+	{
+		content = e;
+	}
+}
+
+//class StackError extends RuntimeException {
+//	String message;
+//	StackError(String m)
+//	{
+//		message = m;
+//	}
+//}
+
+public class ListStack<E> implements Stack<E> {
+	
+	private Cell<E> top;
+
+	@Override
+	public boolean isEmpty()
+	{
+		return top==null;
+	}
+
+	@Override
+	public void push(E e)
+	{
+		Cell<E> newCell = new Cell<E>(e);
+		//....toDo....//
+	}
+
+	@Override
+	public void pop()
+	{
+		
+	}
+
+	@Override
+	public E top()
+	{
+		return top.content;
+	}
+
+	@Override
+	public E poptop()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

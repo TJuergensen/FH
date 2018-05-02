@@ -1,0 +1,49 @@
+package stack.ListStack;
+
+import linkedList.Element;
+import linkedList.LinkedList;
+
+public class ListStack<E> implements Stack<E> {
+
+	private Element<E> top;
+	private LinkedList<E> list;
+	ListStack()
+	{
+		//top = new Cell<E>(null);
+		list  = new LinkedList<E>();
+		list.add(top.getContent());
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		return top == null;
+	}
+
+	@Override
+	public void push(E e)
+	{
+		Cell<E> newCell = new Cell<E>(e);
+		list.add(newCell);
+	}
+
+	@Override
+	public void pop()
+	{
+
+	}
+
+	@Override
+	public E top()
+	{
+		return top.content;
+	}
+
+	@Override
+	public E poptop()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

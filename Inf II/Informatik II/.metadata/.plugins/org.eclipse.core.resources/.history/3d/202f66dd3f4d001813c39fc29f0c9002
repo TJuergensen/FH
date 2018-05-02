@@ -1,0 +1,11 @@
+package linkedList;
+
+public class Element<E> {
+	private E content;
+	
+	Element(E e)
+	{
+		content = e;
+	}
+
+}
