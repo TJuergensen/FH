@@ -1,0 +1,46 @@
+package stack.ListStack;
+import stack.AbstractStack;
+
+
+public class ListStack<E> extends AbstractStack<E> {
+
+	//private E top;
+	private Cell<E> top;
+	ListStack()
+	{
+		super();
+		top = new Cell<E>(null);
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		return top == null;
+	}
+
+	@Override
+	public void push(E e)
+	{
+		//list.add(e);
+	}
+
+	@Override
+	public void pop()
+	{
+		//list.remove(top);
+		
+	}
+
+	@Override
+	public E top()
+	{
+		return top;
+	}
+
+	@Override
+	public E poptop()
+	{
+		pop();
+		return top();
+	}
+}

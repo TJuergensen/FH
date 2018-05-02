@@ -1,0 +1,16 @@
+package stack;
+
+import stack.ListStack.Stack;
+
+public abstract class AbstractStack<E> implements Stack<E> {
+
+    public E poptop() {
+	if (isEmpty()) {
+	    throw new StackError("Cannot do. Stack is empty");
+	} else {
+	    pop();
+	    return top();
+	}
+    }
+
+}

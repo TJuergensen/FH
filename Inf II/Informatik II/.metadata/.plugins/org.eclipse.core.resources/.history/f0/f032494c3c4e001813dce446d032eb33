@@ -1,0 +1,24 @@
+package stackTest;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import stack.ArrayStack.ArrayStack;
+
+class StackTest {
+    protected ArrayStack<Integer> stack;
+
+    // isEmpty(push(x,s)) = false
+    @Test
+    public void isEmpty_push() {
+	stack.push(5);
+	//assertTrue
+	assertFalse(stack.isEmpty());
+    }
+    // isEmpty() == true
+
+    // top(push(x,s)) = x
+    // popTop(s) = top(s), ignore
+
+}

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="stack.StackError"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="linkedList.LinkedList"/>
-<fullyQualifiedTypeName name="linkedList.Element"/>
-<fullyQualifiedTypeName name="stack.AbstractStack"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="linkedList.LinkedList"/>
+    <fullyQualifiedTypeName name="linkedList.Element"/>
+    <fullyQualifiedTypeName name="stack.StackError"/>
+    <fullyQualifiedTypeName name="stack.AbstractStack"/>
+    <fullyQualifiedTypeName name="stack.ListStack.Stack"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

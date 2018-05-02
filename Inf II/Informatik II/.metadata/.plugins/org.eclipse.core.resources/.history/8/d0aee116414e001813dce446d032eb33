@@ -1,0 +1,56 @@
+package stack.ArrayStack;
+
+import stack.AbstractStack;
+import stack.StackError;
+
+public class ArrayStack<E> extends AbstractStack<E> {
+
+    private E[] array;
+    private int top;
+    private final int CAPACITY;
+
+    @SuppressWarnings("unchecked")
+    public ArrayStack(final int size) {
+	super();
+	CAPACITY = size;
+	array = (E[]) new Object[CAPACITY];
+	top = -1;
+    }
+
+    public boolean isFull() {
+	return top == CAPACITY-1;
+    }
+
+    @Override
+    public boolean isEmpty() {
+	return top == -1;
+    }
+
+    @Override
+    public void push(E e) {
+	if (isFull()) {
+	    throw new StackError("Cannot do. Stack is full.");
+	} else {
+	    array[++top] = e;
+	}
+
+    }
+
+    @Override
+    public void pop() {
+	if (isEmpty()) {
+	    throw new StackError("Cannot do. Stack is empty.");
+	} else {
+	    array[top--] = null;
+	}
+    }
+
+    @Override
+    public E top() {
+	if (isEmpty()) {
+	    throw new StackError("Cannot do. Stack is empty.");
+	} else {
+	    return array[top];
+	}
+    }
+}

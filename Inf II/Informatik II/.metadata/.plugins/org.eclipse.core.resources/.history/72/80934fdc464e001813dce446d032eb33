@@ -1,0 +1,27 @@
+package stack;
+import java.util.List;
+
+import stack.ListStack.Stack;
+
+public abstract class AbstractStack<E> implements Stack<E> {
+
+    public E poptop() {
+	if (isEmpty()) {
+	    throw new StackError("Cannot do. Stack is empty");
+	} else {
+	    pop();
+	    return top();
+	}
+    }
+    
+    public boolean isEqualTo(Stack<E> s)
+    {
+	List<E> otherStackAsList = s.toList();
+	int i = 0;
+	while(!isEmpty())
+	{
+	    if(top() ==)
+	}
+	return false;
+    }
+}

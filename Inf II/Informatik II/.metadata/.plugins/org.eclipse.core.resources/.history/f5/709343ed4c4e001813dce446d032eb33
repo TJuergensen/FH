@@ -1,0 +1,126 @@
+package stackTest;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import stack.ArrayStack.ArrayStack;
+import stack.ListStack.ListStack;
+
+class StackTest {
+
+    // isEmpty(push(x,s)) = false
+    @Test
+    public void isEmpty_push() {
+	ArrayStack<Integer> aStack = new ArrayStack<Integer>(1);
+	aStack.push(5);
+	// assertTrue
+	assertFalse(aStack.isEmpty());
+
+	ListStack<Integer> lStack = new ListStack<Integer>();
+	lStack.push(5);
+	// assertTrue
+	assertFalse(lStack.isEmpty());
+    }
+
+    // isEmpty() == true
+    @Test
+    public void isEmpty_true() {
+	ArrayStack<Integer> aStack = new ArrayStack<Integer>(1);
+	assertTrue(aStack.isEmpty());
+	aStack.push(5);
+	aStack.pop();
+	assertTrue(aStack.isEmpty());
+
+	ListStack<Integer> lStack = new ListStack<Integer>();
+	assertTrue(lStack.isEmpty());
+	aStack.push(5);
+	aStack.pop();
+	assertTrue(lStack.isEmpty());
+    }
+
+    // top(push(x,s)) = x
+    @Test
+    public void top_push() {
+	ArrayStack<Integer> aStack = new ArrayStack<Integer>(2);
+	aStack.push(3);
+	assertEquals((int) aStack.top(), 3);
+
+	ListStack<Integer> lStack = new ListStack<Integer>();
+	lStack.push(3);
+	assertEquals((int) lStack.top(), 3);
+
+    }
+
+    // popTop(s) = top(s), ignore
+    @Test
+    public void popTop_top() {
+	ArrayStack<Integer> aStack = new ArrayStack<Integer>(2);
+	aStack.push(3);
+	aStack.push(5);
+	assertEquals(aStack.poptop(), aStack.top());
+
+	ListStack<Integer> lStack = new ListStack<Integer>();
+	lStack.push(3);
+	lStack.push(5);
+	assertEquals(lStack.poptop(), lStack.top());
+    }
+
+    // pop(push(x,s)) = s
+    @Test
+    public void pop_push()
+    {
+	ArrayStack<Integer> aStack = new ArrayStack<Integer>(2);
+	ArrayStack<Integer> aStack1 = new ArrayStack<Integer>(2);
+	assertTrue(aStack.isEqualTo(aStack1));
+	aStack.push(3);
+	aStack1.push(3);
+	assertTrue(aStack.isEqualTo(aStack1));
+	
+	aStack.push(2);
+	aStack.pop();
+	assertTrue(aStack.isEqualTo(aStack1));
+	
+	//ArrayStack und ListStack:
+	ArrayStack<Integer> aStack2 = new ArrayStack<Integer>(2);
+	ListStack<Integer> lStack = new ListStack<Integer>();
+	assertTrue(aStack2.isEqualTo(lStack));
+	aStack2.push(5);
+	aStack2.pop();
+	assertTrue(aStack2.isEqualTo(lStack));
+    }
+    // push(top(s),pop(s)) = s , falls s nicht leer
+    @Test
+    public void push_top_pop()
+    {
+	ArrayStack<Integer> aStack = new ArrayStack<Integer>(2);
+	ArrayStack<Integer> aStack1 = new ArrayStack<Integer>(2);
+	
+	aStack.push(2);
+	aStack1.push(2);
+	assertTrue(aStack.isEqualTo(aStack1));
+	
+	assertFalse(aStack1.isEmpty());
+	aStack.push(aStack.top());
+	aStack.pop();
+	assertTrue(aStack.isEqualTo(aStack1));
+    }
+    // popTop(s) = top(s), pop(s) , falls s nicht leer
+    @Test
+    public void popTop_top_pop()
+    {
+	ArrayStack<Integer> aStack = new ArrayStack<Integer>(2);
+	ArrayStack<Integer> aStack1 = new ArrayStack<Integer>(2);
+	
+	aStack.push(2);
+	aStack1.push(2);
+	assertTrue(aStack.isEqualTo(aStack1));
+	
+	aStack1.pop();
+	assertEquals(aStack.poptop(),aStack1.top());
+    }
+    // push(popTop(s)) = s , falls s nicht leer
+
+}

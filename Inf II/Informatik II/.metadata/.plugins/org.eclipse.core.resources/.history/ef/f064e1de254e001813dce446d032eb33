@@ -1,0 +1,48 @@
+package stack.ListStack;
+
+import stack.AbstractStack;
+import stack.StackError;
+
+public class ListStack<E> extends AbstractStack<E> {
+
+    private Cell<E> top;
+
+    ListStack() {
+	super();
+	top = new Cell<E>(null);
+	top.setNext(top);
+    }
+
+    @Override
+    public boolean isEmpty() {
+	return top == null;
+    }
+
+    @Override
+    public void push(E e) {
+	Cell<E> newTop = new Cell<E>(e);
+	newTop.setNext(top);
+	top = newTop;
+    }
+
+    @Override
+    public void pop() {
+	if (isEmpty()) {
+	    throw new StackError("Not possible. Stack is empty already");
+
+	} else {
+	    top = top.getNext();
+	}
+    }
+
+    @Override
+    public E top() {
+	return top.getData();
+    }
+
+    @Override
+    public E poptop() {
+	pop();
+	return top();
+    }
+}

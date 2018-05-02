@@ -1,0 +1,17 @@
+package stackTest;
+
+import stack.ArrayStack.ArrayStack;
+
+public class ArrayStackTest {
+    
+public static void main(String[] args) {
+    String testString = "This is a String for testing issues";
+    ArrayStack stack = new ArrayStack(testString.length());
+    
+    
+    for(int i=0; i< testString.length(); i++) {
+	
+    }
+}
+
+}

@@ -1,0 +1,48 @@
+package stack;
+import java.util.List;
+
+import stack.ListStack.Stack;
+
+public abstract class AbstractStack<E> implements Stack<E> {
+
+    public E poptop() {
+	if (isEmpty()) {
+	    throw new StackError("Cannot do. Stack is empty");
+	} else {
+	    pop();
+	    return top();
+	}
+    }
+    
+    public boolean isEqualTo(Stack<E> s)
+    {
+	if(isEmpty() != s.isEmpty()) return false;
+	if(isEmpty() && s.isEmpty()) return true;
+	
+	boolean ret = true;
+	List<E> otherStackAsList = s.toList();
+	int i = 0;
+	while(!isEmpty())
+	{
+	    if(otherStackAsList.get(i+1) != null && top() == otherStackAsList.get(i))
+	    {
+		pop();
+		i++;
+	    } else {
+		//empty the stack anyways, to refill it afterwards
+		while(!isEmpty())
+		{
+		    pop();
+		}
+		ret = false;
+	    }
+	}
+	//Refill the stack & return
+	for(i=otherStackAsList.size(); i>=0; i--)
+	{
+	    push(otherStackAsList.get(i));
+	}
+	otherStackAsList = null;
+	return ret;
+    }
+}
