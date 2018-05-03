@@ -3,10 +3,10 @@ package stackTest;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
-
+import stack.StackError;
 import stack.ArrayStack.ArrayStack;
 import stack.ListStack.ListStack;
 
@@ -77,20 +77,19 @@ class StackTest {
 
     // pop(push(x,s)) = s
     @Test
-    public void pop_push()
-    {
+    public void pop_push() {
 	ArrayStack<Integer> aStack = new ArrayStack<Integer>(2);
 	ArrayStack<Integer> aStack1 = new ArrayStack<Integer>(2);
 	assertTrue(aStack.isEqualTo(aStack1));
 	aStack.push(3);
 	aStack1.push(3);
 	assertTrue(aStack.isEqualTo(aStack1));
-	
+
 	aStack.push(2);
 	aStack.pop();
 	assertTrue(aStack.isEqualTo(aStack1));
-	
-	//ArrayStack und ListStack:
+
+	// ArrayStack und ListStack:
 	ArrayStack<Integer> aStack2 = new ArrayStack<Integer>(2);
 	ListStack<Integer> lStack = new ListStack<Integer>();
 	assertTrue(aStack2.isEqualTo(lStack));
@@ -98,79 +97,105 @@ class StackTest {
 	aStack2.pop();
 	assertTrue(aStack2.isEqualTo(lStack));
     }
+
     // push(top(s),pop(s)) = s , falls s nicht leer
     @Test
-    public void push_top_pop()
-    {
+    public void push_top_pop() {
 	ArrayStack<Integer> aStack = new ArrayStack<Integer>(2);
 	ArrayStack<Integer> aStack1 = new ArrayStack<Integer>(2);
-	
+
 	aStack.push(2);
 	aStack1.push(2);
 	assertTrue(aStack.isEqualTo(aStack1));
-	
+
 	assertFalse(aStack1.isEmpty());
 	aStack.push(aStack.top());
 	aStack.pop();
 	assertTrue(aStack.isEqualTo(aStack1));
     }
+
     // popTop(s) = top(s), pop(s) , falls s nicht leer
     @Test
-    public void popTop_top_pop()
-    {
+    public void popTop_top_pop() {
 	ArrayStack<Integer> aStack = new ArrayStack<Integer>(2);
 	ArrayStack<Integer> aStack1 = new ArrayStack<Integer>(2);
-	
+
 	aStack.push(2);
 	aStack1.push(2);
 	aStack.push(6);
 	aStack1.push(6);
 	assertTrue(aStack.isEqualTo(aStack1));
-	
-	
-	assertEquals(aStack.poptop(),aStack1.top());
+
+	assertEquals(aStack.poptop(), aStack1.top());
 	aStack1.pop();
 	assertTrue(aStack.isEqualTo(aStack1));
     }
+
     // push(popTop(s)) = s , falls s nicht leer
     @Test
-    public void push_popTop()
-    {
+    public void push_popTop() {
 	ArrayStack<Integer> aStack = new ArrayStack<Integer>(3);
 	ArrayStack<Integer> aStack1 = new ArrayStack<Integer>(3);
-	
+
 	aStack.push(2);
 	aStack1.push(2);
 	aStack.push(6);
 	aStack1.push(6);
 	assertTrue(aStack.isEqualTo(aStack1));
-	
+
 	aStack.push(aStack.poptop());
 	assertTrue(aStack.isEqualTo(aStack1));
     }
-    
-    //pop(empty) = error
+
+    // pop(empty) = error
     @Test
-    public void pop_empty()
-    {
+    public void pop_empty() {
 	ArrayStack<Integer> aStack = new ArrayStack<Integer>(3);
 	assertTrue(aStack.isEmpty());
-	
+
+	assertThrows(StackError.class, () -> {
+	    aStack.pop();
+	});
+
+	ListStack<Integer> lStack = new ListStack<Integer>();
+	assertTrue(aStack.isEmpty());
+	assertThrows(StackError.class, () -> {
+	    lStack.pop();
+	});
     }
-    //top(empty) = error
+
+    // top(empty) = error
     @Test
-    public void top_empty()
-    {
+    public void top_empty() {
 
 	ArrayStack<Integer> aStack = new ArrayStack<Integer>(3);
 	assertTrue(aStack.isEmpty());
+
+	assertThrows(StackError.class, () -> {
+	    aStack.top();
+	});
+
+	ListStack<Integer> lStack = new ListStack<Integer>();
+	assertTrue(aStack.isEmpty());
+	assertThrows(StackError.class, () -> {
+	    lStack.top();
+	});
     }
-    //popTop(empty) = error
+
+    // popTop(empty) = error
     @Test
-    public void poptop_empty()
-    {
+    public void poptop_empty() {
 
 	ArrayStack<Integer> aStack = new ArrayStack<Integer>(3);
 	assertTrue(aStack.isEmpty());
+	assertThrows(StackError.class, () -> {
+	    aStack.poptop();
+	});
+
+	ListStack<Integer> lStack = new ListStack<Integer>();
+	assertTrue(aStack.isEmpty());
+	assertThrows(StackError.class, () -> {
+	    lStack.poptop();
+	});
     }
 }

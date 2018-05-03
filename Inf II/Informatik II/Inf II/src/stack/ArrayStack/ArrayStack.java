@@ -21,22 +21,22 @@ public class ArrayStack<E> extends AbstractStack<E> {
 
     public boolean isFull() {
 	return top == CAPACITY - 1;
-    }
+    }// O(1)
 
     @Override
     public boolean isEmpty() {
 	return top == -1;
-    }
+    } // O(1)
 
     @Override
     public void push(E e) {
 	if (isFull()) {
 	    throw new StackError("Cannot do. Stack is full.");
 	} else {
-	    array[++top] = e;
+	    array[++top] = e; // O(1) + O(1)
 	}
 
-    }
+    } // O(1)
 
     @Override
     public void pop() {
@@ -44,7 +44,7 @@ public class ArrayStack<E> extends AbstractStack<E> {
 	    throw new StackError("Cannot do. Stack is empty.");
 	} else {
 	    array[top--] = null;
-	}
+	} // O(1)
     }
 
     @Override
@@ -53,38 +53,23 @@ public class ArrayStack<E> extends AbstractStack<E> {
 	    throw new StackError("Cannot do. Stack is empty.");
 	} else {
 	    return array[top];
-	}
+	} // O(1)
     }
 
     @Override
     public List<E> toList() {
 	List<E> retList = new ArrayList<E>();
 	ArrayStack<E> tempStack = new ArrayStack<E>(CAPACITY);
-	while (!isEmpty()) {
+	while (!isEmpty()) { // O(n), mit n=Elemente im Stack, max CAPACITY
 	    retList.add(top());
-	    tempStack.push(top());
-	    pop();
-	}
-	//Refill the original Stack
-	while (!tempStack.isEmpty()) {
-	    push(tempStack.top());
-	    tempStack.pop();
-	}
-	return retList;
-    }
+	    tempStack.push(poptop()); // O(1)+O(1)
 
-    // @Override
-    // public boolean isEqualTo(Stack<E> s) {
-    // ArrayStack<E> stackMe = new ArrayStack<E>(CAPACITY);
-    //
-    // for (int i = 0; i < CAPACITY; i++) {
-    // if (top() == s.top()) {
-    // pop();
-    // s.pop();
-    //
-    // } else
-    // return false;
-    // }
-    // return true;
-    // }
+	} // O(n)
+	  // Refill the original Stack
+	while (!tempStack.isEmpty()) { // O(n)
+	    push(tempStack.poptop());// O(1)+O(1)
+	} // O(n)
+
+	return retList;
+    }// O(n)
 }

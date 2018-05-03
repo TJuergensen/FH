@@ -22,16 +22,14 @@ public class ListStackTest {
 	ListStack<Character> tempStack = new ListStack<Character>();
 	while (!stack.isEmpty()) {
 	    System.out.print(stack.top());
-	    tempStack.push(stack.top());
-	    stack.pop();
+	    tempStack.push(stack.poptop());
 	}
 	// Break Link
 	System.out.println("");
 
 	// refill original stack
 	while (!tempStack.isEmpty()) {
-	    stack.push(tempStack.top());
-	    tempStack.pop();
+	    stack.push(tempStack.poptop());
 	}
 
 	tempStack = null;
