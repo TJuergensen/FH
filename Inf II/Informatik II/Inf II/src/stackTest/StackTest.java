@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 
 import stack.ArrayStack.ArrayStack;
 import stack.ListStack.ListStack;
@@ -58,14 +59,20 @@ class StackTest {
     @Test
     public void popTop_top() {
 	ArrayStack<Integer> aStack = new ArrayStack<Integer>(2);
+	ArrayStack<Integer> aStack1 = new ArrayStack<Integer>(2);
 	aStack.push(3);
 	aStack.push(5);
-	assertEquals(aStack.poptop(), aStack.top());
+	aStack1.push(3);
+	aStack1.push(5);
+	assertEquals(aStack.poptop(), aStack1.top());
 
 	ListStack<Integer> lStack = new ListStack<Integer>();
+	ListStack<Integer> lStack1 = new ListStack<Integer>();
 	lStack.push(3);
 	lStack.push(5);
-	assertEquals(lStack.poptop(), lStack.top());
+	lStack1.push(3);
+	lStack1.push(5);
+	assertEquals(lStack.poptop(), lStack1.top());
     }
 
     // pop(push(x,s)) = s
@@ -120,8 +127,9 @@ class StackTest {
 	aStack1.push(6);
 	assertTrue(aStack.isEqualTo(aStack1));
 	
-	aStack1.pop();
+	
 	assertEquals(aStack.poptop(),aStack1.top());
+	aStack1.pop();
 	assertTrue(aStack.isEqualTo(aStack1));
     }
     // push(popTop(s)) = s , falls s nicht leer
@@ -137,9 +145,32 @@ class StackTest {
 	aStack1.push(6);
 	assertTrue(aStack.isEqualTo(aStack1));
 	
-	//TODO: OverThink the popTop!
 	aStack.push(aStack.poptop());
 	assertTrue(aStack.isEqualTo(aStack1));
     }
+    
+    //pop(empty) = error
+    @Test
+    public void pop_empty()
+    {
+	ArrayStack<Integer> aStack = new ArrayStack<Integer>(3);
+	assertTrue(aStack.isEmpty());
+	
+    }
+    //top(empty) = error
+    @Test
+    public void top_empty()
+    {
 
+	ArrayStack<Integer> aStack = new ArrayStack<Integer>(3);
+	assertTrue(aStack.isEmpty());
+    }
+    //popTop(empty) = error
+    @Test
+    public void poptop_empty()
+    {
+
+	ArrayStack<Integer> aStack = new ArrayStack<Integer>(3);
+	assertTrue(aStack.isEmpty());
+    }
 }

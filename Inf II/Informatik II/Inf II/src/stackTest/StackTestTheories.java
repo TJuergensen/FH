@@ -1,0 +1,29 @@
+package stackTest;
+
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.experimental.theories.DataPoint;
+import org.junit.experimental.theories.Theories;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+
+import stack.AbstractStack;
+
+@RunWith(Theories.class)
+public class StackTestTheories {
+    
+    protected abstract AbstractStack<E> stack1;
+    
+    @DataPoint public static List<Integer> data1 = Arrays.asList(1,2,6,4,2,7,8,22,1,99,910);
+    @DataPoint public static List<Double> data2 = Arrays.asList(22.0,25.0,2.0,6.7);
+    @DataPoint public static List<String> data3 = Arrays.asList("hey", "hallo", "");
+
+    @Test
+    void test() {
+	fail("Not yet implemented");
+    }
+
+}
