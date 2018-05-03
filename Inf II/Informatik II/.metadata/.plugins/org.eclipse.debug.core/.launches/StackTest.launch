@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.junit.launchconfig">
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/Inf II/src/stackTest/StackTest.java"/>
+        <listEntry value="/Stack/src/stackTest/StackTest.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
@@ -11,6 +11,6 @@
     <stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
     <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit5"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="stackTest.StackTest"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Inf II"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Stack"/>
     <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-ea"/>
 </launchConfiguration>
