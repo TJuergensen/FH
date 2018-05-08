@@ -1,7 +1,0 @@
-package stack;
-
-public abstract class AbstractStack {
-	
-	
-
-}
