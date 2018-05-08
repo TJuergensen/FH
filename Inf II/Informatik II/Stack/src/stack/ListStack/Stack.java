@@ -13,9 +13,19 @@ public interface Stack<E> {
     E top();
 
     E poptop();
-    
+
     List<E> toList();
-    
+
     boolean isEqualTo(Stack<E> s);
+
+    void multipop(int k);
+
+    List<E> multiPopTop(int k);
+
+    List<E> popTopAll();
+
+    void pushAll(List<E> list);
+    
+    E[] toArray();
 
 }

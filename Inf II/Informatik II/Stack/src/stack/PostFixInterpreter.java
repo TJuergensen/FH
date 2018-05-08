@@ -64,7 +64,8 @@ public class PostFixInterpreter {
     public static void main(String[] args) {
 	PostFixInterpreter interpreter = new PostFixInterpreter();
 	String calculation = "([])12+34^+";
-	System.out.println(interpreter.interpret(calculation));
+	String calculation2 = "36/";
+	System.out.println(interpreter.interpret(calculation2));
     }
 
 }

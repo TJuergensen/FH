@@ -28,10 +28,18 @@ public class ArrayStack<E> extends AbstractStack<E> {
 	return top == -1;
     } // O(1)
 
+    @SuppressWarnings("unchecked")
     @Override
     public void push(E e) {
 	if (isFull()) {
-	    throw new StackError("Cannot do. Stack is full.");
+	    // throw new StackError("Cannot do. Stack is full.");
+	    List<E> copy = toList();
+	    copy.add(0, e);
+	    array = null;
+	    array = (E[]) new Object[CAPACITY * 2];
+	    for (int i = copy.size() - 1; i >= 0; i--) {
+		push(copy.get(i));
+	    }
 	} else {
 	    array[++top] = e; // O(1) + O(1)
 	}

@@ -63,4 +63,10 @@ public class ListStack<E> extends AbstractStack<E> {
 	return retList;
     } //O(n)
 
+    @Override
+    public void multipop(int k) {
+	// TODO Auto-generated method stub
+	
+    }
+
 }
