@@ -1,5 +1,5 @@
 package queue;
 
-public class AbstractQueue {
+public abstract class AbstractQueue<E> implements Queue<E> {
 
 }
