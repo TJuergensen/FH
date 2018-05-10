@@ -23,5 +23,9 @@ public interface Queue<E> {
 	List<E> deQueueFrontAll();
 	
 	E[] toArray();
+	
+	List<E> toList();
+	
+	boolean isEqualTo(Queue<E> q);
 
 }

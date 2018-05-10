@@ -1,19 +1,22 @@
 package queue.ArrayQueue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import queue.AbstractQueue;
+import queue.QueueError;
 
 public class ArrayQueue<E> extends AbstractQueue<E> {
 	private E[] array;
-	private int size, anfang, ende;
-	private static final int CAPACITY = 10;
+	private int size, start, end;
+	private final int CAPACITY;
 	
 	@SuppressWarnings("unchecked")
-	public ArrayQueue() {
+	public ArrayQueue(final int stackSize) {
 		super();
+		CAPACITY = stackSize;
 		array = (E[]) new Object[CAPACITY];
-		anfang = 0; ende = -1; size = 0;
+		start = 0; end = -1; size = 0;
 		} 
 	
 	private int inc(int i) {
@@ -28,58 +31,39 @@ public class ArrayQueue<E> extends AbstractQueue<E> {
 
 	@Override
 	public void enQueue(E e) {
-		ende = inc(ende);
-		array[ende] = e;
+		if(size==CAPACITY) throw new QueueError("Queue is full, can't enqueue");
+		end = inc(end);
+		array[end] = e;
 		size++; 
 	}
 
 	@Override
 	public void deQueue() {
-		anfang = inc(anfang);
+		if(isEmpty()) throw new QueueError("Queue is empty, can't dequeue");
+		start = inc(start);
 		size--;
 
 	}
 
 	@Override
 	public E front() {
-		return array[anfang];
+		return array[start];
 
-	}
-
-	@Override
-	public E deQueueFront() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void enQueueAll(List<E> li) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deQueue(int k) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<E> deQueueFront(int k) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<E> deQueueFrontAll() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public E[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		return array;
+	}
+
+	@Override
+	public List<E> toList() {
+		ArrayList<E> list = new ArrayList<E>();
+		for (int i=start; i<=end; i++)
+		{
+			list.add(array[i]);
+		}
+		return list;
 	}
 
 	

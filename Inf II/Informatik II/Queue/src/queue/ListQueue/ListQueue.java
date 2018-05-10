@@ -1,5 +1,6 @@
 package queue.ListQueue;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import queue.AbstractQueue;
@@ -15,68 +16,71 @@ class Cell<E> {
 }
 
 public class ListQueue<E> extends AbstractQueue<E> {
-	
-	private Cell<E> ende;
-	
-	public ListQueue()
-	{
+
+	private Cell<E> end;
+
+	public ListQueue() {
 		super();
 	}
-	
-	 public boolean isEmpty() { return ende == null;}
-	 
-	 public void deQueue() {
-	 if (isEmpty()) throw new QueueError("Queue is empty!");
-	 return;
-	 }
+
+	public boolean isEmpty() {
+		return end == null;
+	}
+
+	public void deQueue() {
+		if (isEmpty())
+			throw new QueueError("Queue is empty!");
+		if (end.next == end) {
+			end = null;
+		} else {
+			end.next = end.next.next;
+		}
+		return;
+	}
 
 	@Override
 	public void enQueue(E e) {
-		// TODO Auto-generated method stub
-		
+		Cell<E> newCell = new Cell<E>(e);
+		if (isEmpty()) {
+			end = newCell;
+			end.next = newCell;
+		} else {
+			newCell.next = end.next;
+			end.next = newCell;
+			end = newCell;
+		}
+		return;
+
 	}
 
 	@Override
 	public E front() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty())
+			throw new QueueError("Queue is empty.");
+		return end.next.data;
 	}
 
-	@Override
-	public E deQueueFront() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void enQueueAll(List<E> li) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deQueue(int k) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<E> deQueueFront(int k) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<E> deQueueFrontAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public E[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		List<E> list = this.toList();
+		return (E[]) list.toArray();
 	}
 
+	@Override
+	public List<E> toList() {
+		List<E> list = new LinkedList<E>();
+		if (!isEmpty()) {
+			Cell<E> tmp = end;
+			while (tmp.next != end) {
+				list.add(tmp.next.data);
+				tmp = tmp.next;
+
+			}
+			// add last (missing) element
+			list.add(tmp.next.data);
+		}
+		return list;
+	}
 
 }
