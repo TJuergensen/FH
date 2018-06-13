@@ -1,0 +1,260 @@
+package ADTSet.SetTest;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.experimental.theories.DataPoint;
+import org.junit.experimental.theories.DataPoints;
+import org.junit.experimental.theories.Theories;
+import org.junit.experimental.theories.Theory;
+import org.junit.runner.RunWith;
+
+import ADTList.list.ADTList;
+import ADTSet.Set.ADTSet;
+import ADTSet.Set.ListSet;
+
+@RunWith(Theories.class)
+public class ADTSetTest {
+
+	ADTSet<Integer> testSet;
+	ADTSet<Integer> referenceTestSet;
+
+	@DataPoints
+	public static int[] integers() {
+		return new int[] { 876, -1, -10, -1234567, 1, 10, 1234567, Integer.MIN_VALUE, Integer.MAX_VALUE, 0, 2, 4, 3, 5,
+				6, 7, 8, 9, 10, 11, 12, 13, 22, 52 };
+	}
+
+	@DataPoints
+	public static int[] integers2() {
+		return new int[] { 348563785, 876, -1, -10, -1234567, 1, 10, 1234567, Integer.MIN_VALUE, Integer.MAX_VALUE, 0,
+				2, 4, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 22, 52 };
+	}
+
+	@DataPoint
+	public static ADTSet<Integer> TestSet = ListSet.set(75, 6, 4, 2, 88, 5, 3, 8, 9, 234, 2, 6);
+	
+	@DataPoint
+	public static ADTSet<Integer> tesSet2 = ListSet.set(2, 6, 3, 88, 5, 9, 15, 222, 555, 777, 999, 34564, 2134234,
+			567567, 34234, 42);
+
+	@DataPoint
+	public static ADTList<Integer> testList = ADTList.list(2, 6, 3, 88, 5, 9, 15, 222, 555, 777, 999, 34564, 2134234,
+			567567, 34234, 42);
+
+	@DataPoint
+	public static int[] intarray = { 2, 5, 8, 44, 7, 2, 1, 78, 23425, 12, 3, Integer.MIN_VALUE, Integer.MAX_VALUE };
+
+	@Theory // vx : x e A -> x e B
+	public void subsetTest(ADTList<Integer> a, int[] b) {
+		testSet = ListSet.fromList(a);
+		referenceTestSet = ListSet.fromList(a);
+
+		for (int i = 0; i < b.length; i++) {
+			referenceTestSet.insert(b[i]);
+		}
+
+		for (int i = 0; i < a.length(a); i++) {
+			assertTrue(testSet.member(a.head()) && referenceTestSet.member(a.head()));
+			assertTrue(testSet.member(a.head()));
+
+			a = a.tail();
+		}
+
+		assertTrue(testSet.isSubsetOf(referenceTestSet));
+
+	}
+
+	@Theory // A = B <=> AcB & BcA
+	public void isEqualToTest(ADTList<Integer> a, Integer b) {
+		testSet = ListSet.fromList(a);
+		referenceTestSet = ListSet.fromList(a);
+
+		assertTrue(testSet.isSubsetOf(referenceTestSet));
+		assertTrue(referenceTestSet.isSubsetOf(testSet));
+
+		assertTrue(referenceTestSet.isEqualTo(testSet));
+
+		if (!testSet.member(b)) {
+			testSet.insert(b);
+			assertFalse(referenceTestSet.isEqualTo(testSet));
+		}
+	}
+
+	@Theory // A != B <=> A!cB & B!cA
+	public void disjointTest() {
+		testSet = ListSet.set(1, 2, 3, 4, 5, 6);
+		referenceTestSet = ListSet.set(7, 8, 9, 0);
+
+		assertFalse(testSet.isSubsetOf(referenceTestSet));
+		assertFalse(referenceTestSet.isSubsetOf(testSet));
+
+		assertTrue(testSet.disjoint(referenceTestSet));
+	}
+
+	// isEmpty(empty) = true
+	@Theory
+	public void isEmpty_empty_Test() {
+		testSet = ListSet.empty();
+		assertTrue(testSet.isEmpty());
+	}
+
+	// isEmpty(insert(x,s)) = false
+	@Theory
+	public void isEmpty_insert_Test(Integer a) {
+		testSet = ListSet.empty();
+		assertTrue(testSet.isEmpty());
+		testSet.insert(a);
+		assertFalse(testSet.isEmpty());
+	}
+
+	// member(x,empty) = false
+	@Theory
+	public void member_empty_Test(Integer a) {
+		testSet = ListSet.empty();
+		assertFalse(testSet.member(a));
+	}
+
+	// member(y,insert(x,s)) = x==y ? true : member(y,s)
+	@Theory
+	public void member_insert_test(Integer x, Integer y) {
+		testSet = ListSet.empty();
+		testSet.insert(x);
+		if (x.equals(y)) {
+			assertTrue(testSet.member(y));
+		} else {
+			assertFalse(testSet.member(y));
+		}
+	}
+
+	// member(y, delete(x,s)) = x==y ? false : member(y,s)
+	@Theory
+	public void member_delete_test(Integer x, Integer y) {
+		testSet = ListSet.set(y);
+		// testSet.insert(y);
+		assertTrue(testSet.member(y));
+
+		testSet.delete(x);
+		if (x.equals(y)) {
+			assertFalse(testSet.member(y));
+		} else {
+			assertTrue(testSet.member(y));
+		}
+	}
+
+	// size(empty) = 0
+	@Theory
+	public void size_Empty_test() {
+		testSet = ListSet.empty();
+		assertTrue(testSet.size() == 0);
+	}
+
+	// size(insert(x,s)) = !member(x,s) ? size(s)+1 : size(s)
+	@Theory
+	public void size_insert_Test(Integer x, ADTList<Integer> a) {
+		testSet = ListSet.fromList(a);
+		int setSize = testSet.size();
+
+		if (!testSet.member(x)) {
+			testSet.insert(x);
+			assertTrue(testSet.size() == setSize + 1);
+		} else {
+			testSet.insert(x);
+			assertTrue(testSet.size() == setSize);
+		}
+	}
+
+	// insert(y, insert(x,s)) = x==y ? insert(y,s) : insert(x, insert(y,s))
+	@Theory
+	public void insert_insert_test(Integer x, Integer y, ADTList<Integer> a) {
+		testSet = ListSet.fromList(a);
+
+		if (x == y) {
+			testSet.insert(y);
+			assertTrue(testSet.member(x));
+			assertTrue(testSet.member(y));
+		} else {
+			testSet.insert(y);
+			testSet.insert(x);
+			assertTrue(testSet.member(y));
+			assertTrue(testSet.member(x));
+		}
+	}
+
+	// delete(x, empty) = empty
+	@Theory
+	public void delete_empty_test(Integer x) {
+		testSet = ListSet.empty();
+		assertTrue(testSet.isEmpty());
+		testSet.delete(x);
+		assertTrue(testSet.isEmpty());
+	}
+
+	// delete(y,insert(x,s)) = x==y ? delete(y,s) : insert(x, delete(y,s))
+	@Theory
+	public void delete_insert_test(Integer x, Integer y, ADTList<Integer> a) {
+		testSet = ListSet.fromList(a);
+		testSet.insert(x);
+		testSet.delete(y);
+
+		if (x.equals(y)) {
+			referenceTestSet = ListSet.fromList(a);
+			referenceTestSet.insert(x);
+			referenceTestSet.delete(y);
+			assertTrue(referenceTestSet.isEqualTo(testSet));
+		} else {
+			referenceTestSet = ListSet.fromList(a);
+			referenceTestSet.insert(y);
+			referenceTestSet.delete(y);
+			referenceTestSet.insert(x);
+			assertTrue(referenceTestSet.isEqualTo(testSet));
+		}
+	}
+
+	// get(y, insert(x,s)) = x==y ? x : get(y,s)
+	@Theory
+	public void get_insert_test(Integer x, Integer y, ADTList<Integer> a) {
+		testSet = ListSet.fromList(a);
+		testSet.insert(x);
+		testSet.insert(y);
+		Integer test1 = testSet.get(y);
+
+		if (x.equals(y)) {
+			assertTrue(test1 == x);
+		} else {
+			referenceTestSet = ListSet.fromList(a);
+			referenceTestSet.insert(y);
+			assertTrue(referenceTestSet.get(y) == test1);
+		}
+	}
+
+	// get(y, delete(x,s)) = x==y ? null : get(y,s)
+	@Theory
+	public void get_delete_test(Integer x, Integer y, ADTList<Integer> a) {
+		testSet = ListSet.fromList(a);
+		testSet.insert(x);
+		testSet.insert(y);
+		Integer test1 = testSet.get(y);
+		System.out.println(test1);
+		if (x.equals(y)) {
+			assertNull(test1);
+		} else {
+			assertNotNull(test1);
+		}
+	}
+	
+	@Theory //All Elements contained in A AND B
+	public void unionTest(ADTSet<Integer> a, ADTSet<Integer> b)
+	{
+		ADTSet<Integer> res = a.union(b);
+	}
+	
+	@Theory // All Elements contained in A OR B
+	public void intersectionTest()
+	{
+		
+	}
+	
+}
