@@ -13,26 +13,44 @@ public abstract class AbstractQueue<E> implements Queue<E> {
 	
 	@Override
 	public void enQueueAll(List<E> li) {
-		// TODO Auto-generated method stub
+		
+	    for (int i=0; i< li.size(); i++)
+		{
+		    enQueue(li.get(i));
+		}
 		
 	}
 
 	@Override
 	public void deQueue(int k) {
-		// TODO Auto-generated method stub
+		int qSize = toList().size();
+	    if(k>qSize)
+		k=qSize;
+	    
+	    for(int i=0; i<k; i++) {
+		deQueue();
+		}
 		
 	}
 
 	@Override
 	public List<E> deQueueFront(int k) {
-		// TODO Auto-generated method stub
-		return null;
+		List<E> qList = toList();
+		int qSize = qList.size();
+		    if(k>qSize)
+			k=qSize;
+		    
+		    
+		    for(int i=0; i<k; i++) {
+			qList.add(deQueueFront());
+			}
+	return qList;
 	}
 
 	@Override
 	public List<E> deQueueFrontAll() {
-		// TODO Auto-generated method stub
-		return null;
+	    
+	return deQueueFront(toList().size());
 	}
 
 	@Override
