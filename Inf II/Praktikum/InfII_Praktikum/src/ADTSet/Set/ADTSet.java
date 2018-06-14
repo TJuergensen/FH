@@ -22,5 +22,7 @@ public interface ADTSet<A> {
     boolean isSubsetOf(ADTSet<A> s);
     public boolean isEqualTo(ADTSet<A> s);
     public boolean disjoint(ADTSet<A> s);
+    public ADTSet<A> union(ADTSet<A> s);
+    public ADTSet<A> intersection(ADTSet<A> s);
         
 }

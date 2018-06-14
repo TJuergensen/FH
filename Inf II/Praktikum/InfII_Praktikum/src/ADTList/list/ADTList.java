@@ -126,11 +126,11 @@ public abstract class ADTList<A> {
 		return foldr(x -> xs -> p.apply(x) ? xs.cons(x) : xs, list(), list);
 	}
 
-	private static <A, B> B foldr(Function<A, Function<B, B>> f, B s, ADTList<A> list) {
+	public static <A, B> B foldr(Function<A, Function<B, B>> f, B s, ADTList<A> list) {
 		return list.isEmpty() ? s : f.apply(list.head()).apply(foldr(f, s, list.tail()));
 	}
 
-	private static <A, B> B foldl(Function<B, Function<A, B>> f, B s, ADTList<A> list) {
+	public static <A, B> B foldl(Function<B, Function<A, B>> f, B s, ADTList<A> list) {
 		return list.isEmpty() ? s : foldl(f, f.apply(s).apply(list.head()), list.tail());
 	}
 

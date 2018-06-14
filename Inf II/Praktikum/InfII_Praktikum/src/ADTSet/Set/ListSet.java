@@ -129,12 +129,12 @@ public class ListSet<A> implements ADTSet<A> {
 	@Override
 	public A get(A e) {
 		ADTSet<A> s = fromList(this.toList());
-		System.out.println("hey");
-		s = filter(y -> y.equals(e));
-		System.out.println("ho");
-		if(s.isEmpty())
+
+		if (this.isEmpty() || !(this.member(e)))
 			return null;
-		return s.toList().head();
+		//System.out.println(e);
+		//System.out.println(filter(y -> this.member(e), this).toList().toString());
+		return filter(y -> this.member(e), this).toList().head();
 	}
 
 	@Override
@@ -143,7 +143,7 @@ public class ListSet<A> implements ADTSet<A> {
 	}
 
 	public String toString() {
-		if(this.size() == 0)
+		if (this.size() == 0)
 			return "{}";
 		return "{" + setElements.toString() + "}";
 	}
@@ -216,23 +216,40 @@ public class ListSet<A> implements ADTSet<A> {
 	}
 
 	private <B> B foldr(Function<A, Function<B, B>> f, B s) {
-		return toList().isEmpty() ? s : f.apply(setElements.head()).apply(foldr(f, s));
+		// return toList().isEmpty() ? s : f.apply(setElements.head()).apply(foldr(f,
+		// s));
+		// return toList().isEmpty() ? s :
+		// f.apply(this.setElements.head()).apply(foldr(f, s));
+		return ADTList.foldr(f, s, this.toList());
 	}
 
 	private <B> B foldl(Function<B, Function<A, B>> f, B s) {
-		return isEmpty() ? s : foldl(f, f.apply(s).apply(setElements.head()));
+		return ADTList.foldl(f, s, this.toList());
+		// return isEmpty() ? s : foldl(f, f.apply(s).apply(this.setElements.head()));
 	}
 
-	public ADTSet<A> filter(Function<A, Boolean> f) {
-		return foldr(x -> xs -> f.apply(x) ? xs.insert(x) : xs, empty());
+	public ADTSet<A> filter(Function<A, Boolean> f, ADTSet<A> set) {
+
+		if (this.isEmpty()) {
+			return empty();
+		}
+
+		ADTList<A> ret = set.toList();
+		return ADTList.filter(f, ret).toSet(ret);
+
 	}
 
+	@Override
 	public ADTSet<A> union(ADTSet<A> s) {
+
+		// return filter(y -> s.member(y),this);
+		// result.insert(filter(x-> (this.member(s.toList().head()))));
 		return fromList(ADTList.append(s.toList(), this.toList()));
 	}
 
+	@Override
 	public ADTSet<A> intersection(ADTSet<A> s) {
-		return filter(y -> member(y));
+		return filter(y -> s.member(y), this);
 
 	}
 }

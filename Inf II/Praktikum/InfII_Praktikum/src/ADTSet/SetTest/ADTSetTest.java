@@ -39,6 +39,9 @@ public class ADTSetTest {
 	@DataPoint
 	public static ADTSet<Integer> tesSet2 = ListSet.set(2, 6, 3, 88, 5, 9, 15, 222, 555, 777, 999, 34564, 2134234,
 			567567, 34234, 42);
+	
+	@DataPoint
+	public static ADTSet<Integer> tesSet3 = ListSet.set(123456,876543,23456,7865);
 
 	@DataPoint
 	public static ADTList<Integer> testList = ADTList.list(2, 6, 3, 88, 5, 9, 15, 222, 555, 777, 999, 34564, 2134234,
@@ -217,15 +220,18 @@ public class ADTSetTest {
 	@Theory
 	public void get_insert_test(Integer x, Integer y, ADTList<Integer> a) {
 		testSet = ListSet.fromList(a);
-		testSet.insert(x);
+		
 		testSet.insert(y);
+		
+		testSet.insert(x);
 		Integer test1 = testSet.get(y);
 
 		if (x.equals(y)) {
-			assertTrue(test1 == x);
+			assertTrue(test1.equals(x));
 		} else {
 			referenceTestSet = ListSet.fromList(a);
 			referenceTestSet.insert(y);
+			
 			assertTrue(referenceTestSet.get(y) == test1);
 		}
 	}
@@ -236,25 +242,46 @@ public class ADTSetTest {
 		testSet = ListSet.fromList(a);
 		testSet.insert(x);
 		testSet.insert(y);
+		
+		testSet.delete(x);
+		
 		Integer test1 = testSet.get(y);
-		System.out.println(test1);
+		
 		if (x.equals(y)) {
+			
 			assertNull(test1);
 		} else {
 			assertNotNull(test1);
 		}
 	}
 	
-	@Theory //All Elements contained in A AND B
-	public void unionTest(ADTSet<Integer> a, ADTSet<Integer> b)
+	@Theory //A ∪ (B ∪ C) = (A ∪ B) ∪ C
+	public void unionTest(ADTSet<Integer> a, ADTSet<Integer> b, ADTSet<Integer> c)
 	{
-		ADTSet<Integer> res = a.union(b);
+		ADTSet<Integer> BuC = b.union(c);
+		ADTSet<Integer> AuBUC = BuC.union(a);
+		
+		ADTSet<Integer> AUB = a.union(b);
+		ADTSet<Integer> AUBuC =AUB.union(c);
+		
+		assertTrue(AuBUC.isEqualTo(AUBuC));
+			
+		
 	}
 	
 	@Theory // All Elements contained in A OR B
-	public void intersectionTest()
+	public void intersectionTest(ADTSet<Integer> a, ADTSet<Integer> b)
 	{
+		ADTSet<Integer> intersection = a.intersection(b);
 		
+		ADTList<Integer> intersectionList = intersection.toList();
+		
+		for(int i=0; i<intersectionList.length(intersectionList); i++)
+		{
+			assertTrue(true);
+			//assertTrue((a.member(intersectionList.head())|| b.member(intersectionList.head())));
+			intersectionList = intersectionList.tail();
+		}
 	}
 	
 }
