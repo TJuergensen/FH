@@ -30,10 +30,8 @@ public class ListSet<A> implements ADTSet<A> {
 
 		for (int i = 0; i < list.length(list); i++) {
 			set.insert(tmp.head());
-			// System.out.println(tmp.head());
 			tmp = tmp.tail();
 		}
-		// System.out.println(set.toString());
 		return set;
 	}
 
@@ -45,39 +43,6 @@ public class ListSet<A> implements ADTSet<A> {
 
 	@Override
 	public ADTSet<A> insert(A e) {
-
-		// if (setElements.elem(e, setElements)) {
-		//
-		// // Make a temporary List and go through setElements
-		// ADTList<A> tempList = ADTList.list();
-		// for (int i = 0; i < setElements.length(setElements); i++) {
-		// // check all items of the set elements for by kicking them out of the list.
-		// // if head() is item searched for, kick twice, without adding to tempList.
-		// But
-		// // still add it to temp List.
-		// // Strange...but Task is Task.
-		// if (setElements.head().equals(e)) {
-		// setElements = setElements.tail();
-		// tempList.cons(e);
-		// }
-		//
-		// tempList.cons(setElements.head());
-		// setElements = setElements.tail();
-		// }
-		// // setElemets is empty. Append tempList to reconstruct the list without but
-		// WITH
-		// // the item.
-		// setElements = ADTList.append(setElements, tempList);
-		// return this;
-		// }
-		//
-		// setElements = setElements.cons(e);
-		// System.out.println(setElements.toString());
-		// return this;
-
-		// All this above puts the new Element exactly where it was before.
-		// In a Set, this is not necessary, therefore do the following:
-
 		if (setElements.elem(e, setElements)) {
 			setElements = ADTList.filter(x -> !(x.equals(e)), setElements);
 		}
@@ -88,26 +53,8 @@ public class ListSet<A> implements ADTSet<A> {
 
 	@Override
 	public ADTSet<A> delete(A e) {
-
 		setElements = ADTList.filter(x -> !(x.equals(e)), setElements);
 		return this;
-
-		// without using Filter method.
-		// //Make a temporary List and go through elements of the set
-		// ADTList<A> tempList = ADTList.list();
-		// for (int i = 0; i < setElements.length(setElements); i++) {
-		// //Add all elements from elements to temp and delete elements. Double kick if
-		// e is wanted item..
-		// if (setElements.head().equals(e))
-		// setElements = setElements.tail();
-		//
-		// tempList.cons(setElements.head());
-		// setElements = setElements.tail();
-		// }
-		//
-		// //reunite those two Lists to reconstruct List.
-		// setElements = setElements.append(setElements, tempList);
-		// return this;
 	}
 
 	@Override
@@ -128,13 +75,8 @@ public class ListSet<A> implements ADTSet<A> {
 
 	@Override
 	public A get(A e) {
-		ADTSet<A> s = fromList(this.toList());
 
-		if (this.isEmpty() || !(this.member(e)))
-			return null;
-		//System.out.println(e);
-		//System.out.println(filter(y -> this.member(e), this).toList().toString());
-		return filter(y -> this.member(e), this).toList().head();
+		return member(e) ? ADTList.filter(x -> x.equals(e), this.toList()).head() : null;
 	}
 
 	@Override
@@ -143,7 +85,7 @@ public class ListSet<A> implements ADTSet<A> {
 	}
 
 	public String toString() {
-		if (this.size() == 0)
+		if (this.isEmpty())
 			return "{}";
 		return "{" + setElements.toString() + "}";
 	}
@@ -162,6 +104,10 @@ public class ListSet<A> implements ADTSet<A> {
 	@Override
 	public boolean isSubsetOf(ADTSet<A> s) {
 		// Work on the lists of these two:
+
+		if (this.isEmpty() || s.isEmpty())
+			return true;
+
 		ADTList<A> orig = this.toList();
 		ADTList<A> other = s.toList();
 		for (int i = 0; i < orig.length(orig); i++) {
@@ -200,7 +146,6 @@ public class ListSet<A> implements ADTSet<A> {
 		boolean ret = true;
 		// Just comparing these Lists on Equality would NOT do the job! Within sets, the
 		// position doesn't matter
-
 		if (thisLen != otherLen) {
 			ret = false;
 		} else {
@@ -216,16 +161,11 @@ public class ListSet<A> implements ADTSet<A> {
 	}
 
 	private <B> B foldr(Function<A, Function<B, B>> f, B s) {
-		// return toList().isEmpty() ? s : f.apply(setElements.head()).apply(foldr(f,
-		// s));
-		// return toList().isEmpty() ? s :
-		// f.apply(this.setElements.head()).apply(foldr(f, s));
 		return ADTList.foldr(f, s, this.toList());
 	}
 
 	private <B> B foldl(Function<B, Function<A, B>> f, B s) {
 		return ADTList.foldl(f, s, this.toList());
-		// return isEmpty() ? s : foldl(f, f.apply(s).apply(this.setElements.head()));
 	}
 
 	public ADTSet<A> filter(Function<A, Boolean> f, ADTSet<A> set) {
@@ -241,9 +181,6 @@ public class ListSet<A> implements ADTSet<A> {
 
 	@Override
 	public ADTSet<A> union(ADTSet<A> s) {
-
-		// return filter(y -> s.member(y),this);
-		// result.insert(filter(x-> (this.member(s.toList().head()))));
 		return fromList(ADTList.append(s.toList(), this.toList()));
 	}
 
