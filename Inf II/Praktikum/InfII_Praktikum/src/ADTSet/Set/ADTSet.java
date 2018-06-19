@@ -16,8 +16,10 @@ public interface ADTSet<A> {
     A get(A e);
     ADTList<A> toList();
     
-    boolean any(Function<A, Boolean> p);
+	boolean any(Function<A, Boolean> p);
     boolean all(Function<A, Boolean> p);
+    
+    public ADTSet<A> filter(Function<A, Boolean> f, ADTSet<A> set);
     
     boolean isSubsetOf(ADTSet<A> s);
     public boolean isEqualTo(ADTSet<A> s);

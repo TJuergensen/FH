@@ -37,7 +37,7 @@ public class ADTSetTest {
 	public static ADTSet<Integer> TestSet = ListSet.set(75, 6, 4, 2, 88, 5, 3, 8, 9, 234, 2, 6);
 	
 	@DataPoint
-	public static ADTSet<Integer> tesSet2 = ListSet.set(2, 6, 3, 88, 5, 9, 15, 222, 555, 777, 999, 34564, 2134234,
+	public static ADTSet<Integer> tesSet2 = ListSet.set(2, 6, 3, 88, 88, 5, 9, 15, 222, 555, 777, 999, 34564, 2134234,
 			567567, 34234, 42);
 	
 	@DataPoint
@@ -81,7 +81,7 @@ public class ADTSetTest {
 		assertTrue(referenceTestSet.isEqualTo(testSet));
 
 		if (!testSet.member(b)) {
-			testSet.insert(b);
+			testSet = testSet.insert(b);
 			assertFalse(referenceTestSet.isEqualTo(testSet));
 		}
 	}
@@ -90,7 +90,6 @@ public class ADTSetTest {
 	public void disjointTest() {
 		testSet = ListSet.set(1, 2, 3, 4, 5, 6);
 		referenceTestSet = ListSet.set(7, 8, 9, 0);
-
 		assertFalse(testSet.isSubsetOf(referenceTestSet));
 		assertFalse(referenceTestSet.isSubsetOf(testSet));
 
@@ -109,7 +108,7 @@ public class ADTSetTest {
 	public void isEmpty_insert_Test(Integer a) {
 		testSet = ListSet.empty();
 		assertTrue(testSet.isEmpty());
-		testSet.insert(a);
+		testSet = testSet.insert(a);
 		assertFalse(testSet.isEmpty());
 	}
 
@@ -124,7 +123,7 @@ public class ADTSetTest {
 	@Theory
 	public void member_insert_test(Integer x, Integer y) {
 		testSet = ListSet.empty();
-		testSet.insert(x);
+		testSet = testSet.insert(x);
 		if (x.equals(y)) {
 			assertTrue(testSet.member(y));
 		} else {
@@ -139,7 +138,7 @@ public class ADTSetTest {
 		// testSet.insert(y);
 		assertTrue(testSet.member(y));
 
-		testSet.delete(x);
+		testSet = testSet.delete(x);
 		if (x.equals(y)) {
 			assertFalse(testSet.member(y));
 		} else {
@@ -159,12 +158,16 @@ public class ADTSetTest {
 	public void size_insert_Test(Integer x, ADTList<Integer> a) {
 		testSet = ListSet.fromList(a);
 		int setSize = testSet.size();
+//		//System.out.println(setSize);
 
 		if (!testSet.member(x)) {
-			testSet.insert(x);
+			testSet = testSet.insert(x);
 			assertTrue(testSet.size() == setSize + 1);
 		} else {
-			testSet.insert(x);
+			//System.out.println(testSet.toString());
+			//System.out.println(x);
+			testSet = testSet.insert(x);
+			//System.out.println(testSet.toString());
 			assertTrue(testSet.size() == setSize);
 		}
 	}
@@ -175,12 +178,12 @@ public class ADTSetTest {
 		testSet = ListSet.fromList(a);
 
 		if (x == y) {
-			testSet.insert(y);
+			testSet = testSet.insert(y);
 			assertTrue(testSet.member(x));
 			assertTrue(testSet.member(y));
 		} else {
-			testSet.insert(y);
-			testSet.insert(x);
+			testSet = testSet.insert(y);
+			testSet = testSet.insert(x);
 			assertTrue(testSet.member(y));
 			assertTrue(testSet.member(x));
 		}
@@ -221,16 +224,16 @@ public class ADTSetTest {
 	public void get_insert_test(Integer x, Integer y, ADTList<Integer> a) {
 		testSet = ListSet.fromList(a);
 		
-		testSet.insert(y);
+		testSet = testSet.insert(y);
 		
-		testSet.insert(x);
+		testSet = testSet.insert(x);
 		Integer test1 = testSet.get(y);
 
 		if (x.equals(y)) {
 			assertTrue(test1.equals(x));
 		} else {
 			referenceTestSet = ListSet.fromList(a);
-			referenceTestSet.insert(y);
+			referenceTestSet = referenceTestSet.insert(y);
 			
 			assertTrue(referenceTestSet.get(y) == test1);
 		}
@@ -240,10 +243,10 @@ public class ADTSetTest {
 	@Theory
 	public void get_delete_test(Integer x, Integer y, ADTList<Integer> a) {
 		testSet = ListSet.fromList(a);
-		testSet.insert(x);
-		testSet.insert(y);
+		testSet = testSet.insert(x);
+		testSet = testSet.insert(y);
 		
-		testSet.delete(x);
+		testSet = testSet.delete(x);
 		
 		Integer test1 = testSet.get(y);
 		

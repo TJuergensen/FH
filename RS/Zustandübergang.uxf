@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>1309</x>
+      <y>572</y>
+      <w>242</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>   AutoRotFussgaengerGrün
+   011
+
+
+--
+
+
+PINA = 11101100</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>0</x>
+      <y>319</y>
+      <w>242</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>   Nachtmodus
+	110
+
+--
+
+
+PINA = 11100000
+oder
+PINA = 11110001</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>792</x>
+      <y>66</y>
+      <w>242</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>   AutoGelbFussgaengerRot
+   001
+
+
+--
+
+
+PINA = 11110010</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>1309</x>
+      <y>66</y>
+      <w>242</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>   AutoRotFussgaengerRot
+	010
+
+--
+
+
+PINA = 11110100</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>792</x>
+      <y>572</y>
+      <w>242</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>   AutoRotFussgaengerRotReset
+	100
+
+--
+
+
+PINA = 11110010</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>275</x>
+      <y>572</y>
+      <w>242</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>   AutoRotGelbFussgaengerRot
+   101
+
+
+--
+
+PINA = 11110110</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>275</x>
+      <y>66</y>
+      <w>242</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>   AutoGruenFussgaengerRot
+   000
+
+
+--
+
+
+PINA = 11110001</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1419</x>
+      <y>286</y>
+      <w>33</w>
+      <h>297</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>506</x>
+      <y>165</y>
+      <w>308</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+x7</panel_attributes>
+    <additional_attributes>10.0;20.0;260.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1023</x>
+      <y>165</y>
+      <w>308</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+1</panel_attributes>
+    <additional_attributes>10.0;20.0;260.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1023</x>
+      <y>682</y>
+      <w>308</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+1</panel_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>506</x>
+      <y>682</y>
+      <w>308</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+1</panel_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>286</y>
+      <w>44</w>
+      <h>308</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+x6</panel_attributes>
+    <additional_attributes>10.0;260.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>110</x>
+      <y>539</y>
+      <w>187</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+x5</panel_attributes>
+    <additional_attributes>150.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>110</x>
+      <y>176</y>
+      <w>187</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+x7</panel_attributes>
+    <additional_attributes>10.0;130.0;150.0;10.0</additional_attributes>
+  </element>
+</diagram>

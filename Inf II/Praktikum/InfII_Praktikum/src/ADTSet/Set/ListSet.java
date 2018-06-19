@@ -6,7 +6,7 @@ import ADTList.list.ADTList;
 
 public class ListSet<A> implements ADTSet<A> {
 
-	private ADTList<A> setElements = null;
+	private final ADTList<A> setElements;
 
 	private ListSet() {
 		this.setElements = ADTList.list();
@@ -14,10 +14,11 @@ public class ListSet<A> implements ADTSet<A> {
 
 	@SafeVarargs
 	private ListSet(A... a) {
-		this.setElements = ADTList.list();
-		for (int i = 0; i < a.length; i++) {
-			this.insert(a[i]);
-		}
+		setElements = ADTList.list(a);
+	}
+
+	private ListSet(ADTList<A> list) {
+		setElements = ADTList.append(list, ADTList.list());
 	}
 
 	public static <A> ADTSet<A> empty() {
@@ -25,36 +26,40 @@ public class ListSet<A> implements ADTSet<A> {
 	}
 
 	public static <A> ADTSet<A> fromList(ADTList<A> list) {
-		ADTSet<A> set = new ListSet<A>();
-		ADTList<A> tmp = list;
 
-		for (int i = 0; i < list.length(list); i++) {
-			set.insert(tmp.head());
+		ADTList<A> ret = ADTList.list();
+		ADTList<A> tmp = list;
+		int tmplen = tmp.length(tmp);
+
+		for (int i = 0; i < tmplen; i++) {
+			if (!ret.elem(tmp.head(), ret)) {
+				ret = ret.cons(tmp.head());
+			}
 			tmp = tmp.tail();
 		}
-		return set;
+
+		return new ListSet<A>(ret);
+
 	}
 
 	@SafeVarargs
 	public static <A> ADTSet<A> set(A... es) {
-		ADTSet<A> set = new ListSet<A>(es);
-		return set;
+		return fromList(ADTList.list(es));
 	}
 
 	@Override
 	public ADTSet<A> insert(A e) {
-		if (setElements.elem(e, setElements)) {
-			setElements = ADTList.filter(x -> !(x.equals(e)), setElements);
-		}
-		setElements = setElements.cons(e);
-		return this;
+		ADTList<A> ret = this.toList();
 
+		if (this.member(e)) {
+			ret = (this.delete(e).toList());
+		}
+		return fromList(ret.cons(e));
 	}
 
 	@Override
 	public ADTSet<A> delete(A e) {
-		setElements = ADTList.filter(x -> !(x.equals(e)), setElements);
-		return this;
+		return new ListSet<A>(ADTList.filter(x -> !(e.equals(x)), setElements));
 	}
 
 	@Override
@@ -160,14 +165,16 @@ public class ListSet<A> implements ADTSet<A> {
 		return ret;
 	}
 
-	private <B> B foldr(Function<A, Function<B, B>> f, B s) {
-		return ADTList.foldr(f, s, this.toList());
+
+	public static <A,B> B foldr(Function<A, Function<B, B>> f, B s, ADTSet<A> set) {
+		return ADTList.foldr(f, s, set.toList());
 	}
 
-	private <B> B foldl(Function<B, Function<A, B>> f, B s) {
-		return ADTList.foldl(f, s, this.toList());
+	public static <A,B> B foldl(Function<B, Function<A, B>> f, B s, ADTSet<A> set) {
+		return ADTList.foldl(f, s, set.toList());
 	}
 
+	@Override
 	public ADTSet<A> filter(Function<A, Boolean> f, ADTSet<A> set) {
 
 		if (this.isEmpty()) {
@@ -176,7 +183,6 @@ public class ListSet<A> implements ADTSet<A> {
 
 		ADTList<A> ret = set.toList();
 		return ADTList.filter(f, ret).toSet(ret);
-
 	}
 
 	@Override
