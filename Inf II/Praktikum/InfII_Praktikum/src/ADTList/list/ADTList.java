@@ -2,6 +2,8 @@ package ADTList.list;
 
 import java.util.function.Function;
 
+import ADTMap.ListMap;
+import ADTMap.Map;
 import ADTSet.Set.ADTSet;
 import ADTSet.Set.ListSet;
 
@@ -113,6 +115,20 @@ public abstract class ADTList<A> {
 		// return retList;
 
 		return foldr(x -> xs -> xs.cons(f.apply(x)), list(), list);
+	}
+	
+	public <B> Map<B, ADTList<A>> groupBy(Function<A,B> f)
+	{
+		ADTList<A> workList = this;
+		Map<B,ADTList<A>> m = ListMap.empty();
+		while(!workList.isEmpty())
+		{
+			final B k = f.apply(workList.head());
+			ADTList<A> rt = m.get(k).getValue().cons(workList.head());
+			m = m.insert(k, rt);
+			workList = workList.tail();
+		}	
+		return m;
 	}
 
 	public static <A> ADTList<A> filter(Function<A, Boolean> p, ADTList<A> list) {

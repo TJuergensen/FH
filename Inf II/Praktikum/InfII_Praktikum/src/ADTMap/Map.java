@@ -24,6 +24,7 @@ public interface Map<K, V> {
 	boolean allKeys(Function<K, Boolean> p);
 	
 	boolean isEqualTo (Map<K,V> m);
+	Entry<K,V> get(K key);
 	
 	
 }

@@ -132,6 +132,13 @@ public class ListMap<K, V> implements Map<K, V> {
 		
 	}
 	
+	@Override
+	public Entry<K,V> get(K key)
+	{
+		return new Entry<K,V>(key, lookup(key));
+	}
+	
+	
 	
 
 }
