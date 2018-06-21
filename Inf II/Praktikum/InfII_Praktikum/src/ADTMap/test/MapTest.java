@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
+import org.junit.Test;
 import org.junit.experimental.theories.DataPoint;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
@@ -16,6 +17,8 @@ import ADTMap.Entry;
 import ADTMap.ListMap;
 import ADTMap.Map;
 import ADTMap.Tuple;
+import ADTSet.Set.ADTSet;
+import ADTSet.Set.ListSet;
 
 @RunWith(Theories.class)
 public class MapTest {
@@ -192,4 +195,21 @@ public class MapTest {
 		
 		assertTrue(t.lookup(k2) == (k1.equals(k2) ? null : t.lookup(k2)));
 	}
+	
+	@Theory
+	public void testGroupBy(String k1, String k2, int v1, int v2){
+		ADTList<Payment> list = ADTList.list(new Payment(k1, v1),new Payment(k2, v2));
+		Map<String, ADTList<Payment>> map = list.groupBy(x->x.name);
+		
+		if(k1.equals(k2))
+		{
+			int shouldBe = v1+v2;
+			ADTList<Payment> workList = map.get(k2).getValue();
+			int is = workList.head().value;
+			workList = workList.tail();
+			is += workList.head().value;
+			assertTrue(shouldBe == is);
+		}
+	}
+	
 }

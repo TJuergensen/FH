@@ -123,13 +123,21 @@ public abstract class ADTList<A> {
 		Map<B,ADTList<A>> m = ListMap.empty();
 		while(!workList.isEmpty())
 		{
+			ADTList<A> rt = ADTList.list();
 			final B k = f.apply(workList.head());
-			ADTList<A> rt = m.get(k).getValue().cons(workList.head());
+			if(m.get(k) != null)
+			{
+				rt = m.get(k).getValue().cons(workList.head());
+			} else {
+				rt = rt.cons(workList.head());
+			}
 			m = m.insert(k, rt);
 			workList = workList.tail();
 		}	
 		return m;
 	}
+	
+
 
 	public static <A> ADTList<A> filter(Function<A, Boolean> p, ADTList<A> list) {
 		// if (list.isEmpty()) {
