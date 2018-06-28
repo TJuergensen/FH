@@ -36,6 +36,18 @@ public abstract class ADTList<A> {
 		return new Cons<>(a, this);
 	}
 
+	public ADTList<A> reverse() {
+		ADTList<A> toRev = this;
+		ADTList<A> ret = ADTList.list();
+
+		while (!toRev.isEmpty()) {
+			ret = ret.cons(toRev.head());
+			toRev = toRev.tail();
+		}
+
+		return ret;
+	}
+
 	public ADTSet<A> toSet(ADTList<A> list) {
 
 		return ListSet.fromList(list);
@@ -116,28 +128,23 @@ public abstract class ADTList<A> {
 
 		return foldr(x -> xs -> xs.cons(f.apply(x)), list(), list);
 	}
-	
-	public <B> Map<B, ADTList<A>> groupBy(Function<A,B> f)
-	{
+
+	public <B> Map<B, ADTList<A>> groupBy(Function<A, B> f) {
 		ADTList<A> workList = this;
-		Map<B,ADTList<A>> m = ListMap.empty();
-		while(!workList.isEmpty())
-		{
+		Map<B, ADTList<A>> m = ListMap.empty();
+		while (!workList.isEmpty()) {
 			ADTList<A> rt = ADTList.list();
 			final B k = f.apply(workList.head());
-			if(m.get(k) != null)
-			{
+			if (m.get(k) != null) {
 				rt = m.get(k).getValue().cons(workList.head());
 			} else {
 				rt = rt.cons(workList.head());
 			}
 			m = m.insert(k, rt);
 			workList = workList.tail();
-		}	
+		}
 		return m;
 	}
-	
-
 
 	public static <A> ADTList<A> filter(Function<A, Boolean> p, ADTList<A> list) {
 		// if (list.isEmpty()) {
