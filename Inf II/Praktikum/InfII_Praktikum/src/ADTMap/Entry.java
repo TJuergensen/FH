@@ -3,7 +3,7 @@ package ADTMap;
 public class Entry<K,V>{
 	
 	private final K k;
-	private  V v;
+	private final V v;
 	
 	public Entry(K k, V v)
 	{
@@ -21,10 +21,10 @@ public class Entry<K,V>{
 		return this.v;
 	}
 	
-	public void setValue(V v)
-	{
-		this.v=v;
-	}
+//	public void setValue(V v)
+//	{
+//		this.v=v;
+//	}
 //	@Override
 //	public boolean equals(Entry<K,V> e)
 //	{
@@ -61,11 +61,11 @@ public class Entry<K,V>{
 				return false;
 		} else if (!k.equals(other.k))
 			return false;
-		if (v == null) {
-			if (other.v != null)
-				return false;
-		} else if (!v.equals(other.v))
-			return false;
+//		if (v == null) {
+//			if (other.v != null)
+//				return false;
+//		} else if (!v.equals(other.v))
+//			return false;
 		return true;
 	}
 

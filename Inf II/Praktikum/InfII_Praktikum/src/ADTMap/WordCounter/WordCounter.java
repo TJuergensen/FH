@@ -4,16 +4,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import ADTList.list.ADTList;
-import ADTMap.ListMap;
-import ADTMap.Map;
+//import ADTMap.ListMap;
+//import ADTMap.Map;
+
+import ADTMap.TreeMap.Map;
+import ADTMap.TreeMap.TreeMap;
 
 public class WordCounter {
 
 	public static void main(String[] args) {
 		Scanner input = null;
-		ADTList<String> wordList = ADTList.list();
-		Map<String, Integer> retList = ListMap.empty();
+		//Map<String, Integer> retList = ListMap.empty();
+		Map<String, Integer> retList = TreeMap.empty();
 		try {
 			input = new Scanner(new File("src/ADTMap/WordCounter/Essay.txt"));
 		} catch (FileNotFoundException e) {
@@ -23,7 +25,7 @@ public class WordCounter {
 		while(input.hasNext())
 		{
 			String word  = input.next();
-			word = word.replaceAll("[^a-zA-Z0-9]"," ").toLowerCase().replaceAll("( )+", " ");
+			word = word.replaceAll("[^a-zA-Z0-9]","").toLowerCase();
 			if(retList.member(word))
 			{
 				int count = retList.lookup(word);

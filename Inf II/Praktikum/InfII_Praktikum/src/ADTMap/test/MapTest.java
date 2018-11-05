@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
 import org.junit.experimental.theories.DataPoint;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
@@ -17,8 +16,6 @@ import ADTMap.Entry;
 import ADTMap.ListMap;
 import ADTMap.Map;
 import ADTMap.Tuple;
-import ADTSet.Set.ADTSet;
-import ADTSet.Set.ListSet;
 
 @RunWith(Theories.class)
 public class MapTest {

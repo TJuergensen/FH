@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/tj/Documents/Cassandra_Jars/cassandra-driver-core-2.0.2.jar"/>
+	<classpathentry kind="lib" path="/home/tj/Documents/Cassandra_Jars/guava-16.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/tj/Documents/Cassandra_Jars/metrics-core-3.0.2.jar"/>
+	<classpathentry kind="lib" path="/home/tj/Documents/Cassandra_Jars/netty-3.9.0.Final.jar"/>
+	<classpathentry kind="lib" path="/home/tj/Documents/Cassandra_Jars/slf4j-api-1.7.5-tests.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

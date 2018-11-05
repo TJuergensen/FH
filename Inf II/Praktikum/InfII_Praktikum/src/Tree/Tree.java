@@ -1,7 +1,5 @@
 package Tree;
 
-import java.util.Collections;
-
 import ADTList.list.ADTList;
 import ADTQueue.ListQueue.ListQueue;
 
@@ -44,13 +42,6 @@ public abstract class Tree<A extends Comparable<A>> {
 
 	public abstract int anzInnereKnoten();
 
-	/**
-	 * Merges two subtrees with the particularity that all elements of one are
-	 * either greater or smaller than all elements of the other.
-	 *
-	 * This is an optimized merge for removal of the value, when we need to merge
-	 * the remaining right and left tree.
-	 */
 	protected abstract Tree<A> removeMerge(Tree<A> ta);
 
 	private static class Empty<A extends Comparable<A>> extends Tree<A> {
@@ -267,7 +258,6 @@ public abstract class Tree<A extends Comparable<A>> {
 			if (!t.isEmpty()) {
 				q.enQueue(t.value());
 				ret = ret.cons(q.deQueueFront());
-				// q.deQueue();
 				if (t.left() != null)
 					ret = levelOrder(t.left(), ret, q);
 				if (t.right() != null)
@@ -366,15 +356,15 @@ public abstract class Tree<A extends Comparable<A>> {
 		private ADTList<A> tiefensuche(Tree<A> k, String order, ADTList<A> ret) {
 
 			if (!k.isEmpty()) {
-				// <<preorder-action>>
+				//preorder
 				if (order == "pre")
 					ret = ret.cons(k.value());
 				ret = tiefensuche(k.left(), order, ret);
-				// <<inorder-action>>
+				//inorder
 				if (order == "in")
 					ret = ret.cons(k.value());
 				ret = tiefensuche(k.right(), order, ret);
-				// <<postorder-action>>
+				//postorder
 				if (order == "post")
 					ret = ret.cons(k.value());
 			}

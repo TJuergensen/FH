@@ -1,137 +1,137 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>11</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>1309</x>
-      <y>572</y>
-      <w>242</w>
-      <h>231</h>
+      <x>1192</x>
+      <y>552</y>
+      <w>176</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>   AutoRotFussgaengerGrün
-   011
+   Z = 3
 
 
 --
 
 
-PINA = 11101100</panel_attributes>
+Y = 01100</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>0</x>
-      <y>319</y>
-      <w>242</w>
-      <h>231</h>
+      <x>112</x>
+      <y>464</y>
+      <w>176</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>   Nachtmodus
-	110
+	Z = 6
 
 --
 
 
-PINA = 11100000
-oder
-PINA = 11110001</panel_attributes>
+Y = 00000
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>792</x>
-      <y>66</y>
-      <w>242</w>
-      <h>231</h>
+      <x>816</x>
+      <y>184</y>
+      <w>176</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>   AutoGelbFussgaengerRot
-   001
+   Z = 1
 
 
 --
 
 
-PINA = 11110010</panel_attributes>
+Y = 10010</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>1309</x>
-      <y>66</y>
-      <w>242</w>
-      <h>231</h>
+      <x>1192</x>
+      <y>184</y>
+      <w>176</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>   AutoRotFussgaengerRot
-	010
+	Z = 2
 
 --
 
 
-PINA = 11110100</panel_attributes>
+Y = 10100</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>792</x>
-      <y>572</y>
-      <w>242</w>
-      <h>231</h>
+      <x>816</x>
+      <y>552</y>
+      <w>176</w>
+      <h>168</h>
     </coordinates>
-    <panel_attributes>   AutoRotFussgaengerRotReset
-	100
-
+    <panel_attributes>   
+   AutoRotFussgaengerRotReset
+	Z = 4
+	
 --
 
 
-PINA = 11110010</panel_attributes>
+Y = 10010</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>275</x>
-      <y>572</y>
-      <w>242</w>
-      <h>231</h>
+      <x>440</x>
+      <y>552</y>
+      <w>176</w>
+      <h>168</h>
     </coordinates>
-    <panel_attributes>   AutoRotGelbFussgaengerRot
-   101
-
+    <panel_attributes>   
+   AutoRotGelbFussgaengerRot
+   Z = 5
 
 --
 
-PINA = 11110110</panel_attributes>
+Y = 10110</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>275</x>
-      <y>66</y>
-      <w>242</w>
-      <h>231</h>
+      <x>440</x>
+      <y>184</y>
+      <w>176</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>   AutoGruenFussgaengerRot
-   000
+   Z = 0
 
 
 --
 
 
-PINA = 11110001</panel_attributes>
+Y = 10001</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1419</x>
-      <y>286</y>
-      <w>33</w>
-      <h>297</h>
+      <x>1272</x>
+      <y>344</y>
+      <w>24</w>
+      <h>216</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 1</panel_attributes>
@@ -140,22 +140,22 @@ PINA = 11110001</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>506</x>
-      <y>165</y>
-      <w>308</w>
-      <h>44</h>
+      <x>608</x>
+      <y>256</y>
+      <w>224</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
-x7</panel_attributes>
+Bedarf angemeldet</panel_attributes>
     <additional_attributes>10.0;20.0;260.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1023</x>
-      <y>165</y>
-      <w>308</w>
-      <h>44</h>
+      <x>984</x>
+      <y>256</y>
+      <w>224</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 1</panel_attributes>
@@ -164,10 +164,10 @@ x7</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1023</x>
-      <y>682</y>
-      <w>308</w>
-      <h>44</h>
+      <x>984</x>
+      <y>632</y>
+      <w>224</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 1</panel_attributes>
@@ -176,10 +176,10 @@ x7</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>506</x>
-      <y>682</y>
-      <w>308</w>
-      <h>44</h>
+      <x>608</x>
+      <y>632</y>
+      <w>224</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 1</panel_attributes>
@@ -188,37 +188,67 @@ x7</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>385</x>
-      <y>286</y>
-      <w>44</w>
-      <h>308</h>
+      <x>520</x>
+      <y>344</y>
+      <w>24</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
-x6</panel_attributes>
+1
+</panel_attributes>
     <additional_attributes>10.0;260.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>539</y>
-      <w>187</w>
-      <h>198</h>
+      <x>264</x>
+      <y>328</y>
+      <w>232</w>
+      <h>184</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
-x5</panel_attributes>
-    <additional_attributes>150.0;160.0;10.0;10.0</additional_attributes>
+
+
+
+
+Nachtmodus An</panel_attributes>
+    <additional_attributes>270.0;10.0;10.0;210.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>176</y>
-      <w>187</w>
-      <h>165</h>
+      <x>192</x>
+      <y>264</y>
+      <w>264</w>
+      <h>216</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
-x7</panel_attributes>
-    <additional_attributes>10.0;130.0;150.0;10.0</additional_attributes>
+Bedarf angemeldet oder Nachtmodus Aus</panel_attributes>
+    <additional_attributes>10.0;250.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>136</y>
+      <w>152</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Bedarf nicht angemeldet</panel_attributes>
+    <additional_attributes>140.0;60.0;110.0;20.0;70.0;30.0;50.0;60.0;90.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>88</x>
+      <y>416</y>
+      <w>104</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Nachtmodus An
+</panel_attributes>
+    <additional_attributes>110.0;60.0;80.0;20.0;40.0;30.0;20.0;60.0;60.0;90.0</additional_attributes>
   </element>
 </diagram>

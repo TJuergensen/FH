@@ -55,7 +55,7 @@ public class ListMap<K, V> implements Map<K, V> {
 	public V lookup(K key) {
 
 		if (member(key)) {
-			//System.out.println("LOOKUP WANTED!!  "+ADTList.filter(x -> x.getKey().equals(key), this.set.toList()).toString());
+			
 			return ADTList.filter(x -> x.getKey().equals(key), set.toList()).head().getValue();
 		}
 		return null;

@@ -54,7 +54,7 @@ public class TreeSet<A extends Comparable<A>> implements ADTSet<A> {
 	public String toString() {
 		if (this.isEmpty())
 			return "{}";
-		return "{" + t.toString() + "}";
+		return "{" + t.toListInorder().toString() + "}";
 	}
 
 	@Override
